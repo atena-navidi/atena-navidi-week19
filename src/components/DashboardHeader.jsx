@@ -1,5 +1,6 @@
 import useAuth from "../context/useAuth";
 import { useNavigate } from "react-router-dom";
+import personIcon from "../asset/person.svg"
 
 const DashboardHeader = ({ search, setSearch }) => {
   const { user, logout } = useAuth();
@@ -14,7 +15,7 @@ const DashboardHeader = ({ search, setSearch }) => {
     <header className="bg-white p-4 rounded-2xl mb-6 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <img
-          src="https://i.pravatar.cc/40"
+          src={personIcon}
           alt="avatar"
           className="w-10 h-10 rounded-full"
         />
