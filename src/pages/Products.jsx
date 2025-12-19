@@ -99,25 +99,25 @@ const Products = () => {
         )}
 
         {!isLoading && filteredProducts.length > 0 && (
-          <table className="w-full text-right border-separate border-spacing-y-3">
+          <table className="w-full table-fixed text-right border-separate border-spacing-y-3">
             <thead>
               <tr className="text-gray-400 text-sm">
-                <th>نام کالا</th>
-                <th>موجودی</th>
-                <th>قیمت</th>
-                <th>شناسه</th>
-                <th></th>
+                <th className="px-4 py-3">نام کالا</th>
+                <th className="px-4 py-3">موجودی</th>
+                <th className="px-4 py-3">قیمت</th>
+                <th className="px-4 py-3">شناسه</th>
+                <th className="px-4 py-3"></th>
               </tr>
             </thead>
             <tbody>
               {filteredProducts.map((p) => (
-                <tr key={p.id} className="bg-gray-50">
-                  <td className="py-4 px-3 font-medium">{p.name}</td>
-                  <td className="pl-10">{p.quantity}</td>
-                  <td className="pr-10">{p.price.toLocaleString()} تومان</td>
-                  <td className="px-3 text-gray-400 text-sm">{p.id}</td>
-                  <td className="px-3">
-                    <div className="flex gap-2">
+                <tr key={p.id} className="bg-gray-50 hover:bg-gray-100 transition">
+                  <td className="py-4 px-4 font-medium">{p.name}</td>
+                  <td className="px-4 py-4">{p.quantity}</td>
+                  <td className="px-4 py-4">{p.price.toLocaleString()} تومان</td>
+                  <td className="px-4 py-4 text-gray-400 text-sm">{p.id}</td>
+                  <td className="px-4 py-4">
+                    <div className="flex gap-2 justify-end">
                      
                       <button
                         onClick={() => {
