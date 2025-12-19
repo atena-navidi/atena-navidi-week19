@@ -1,18 +1,75 @@
-# React + Vite
+# Product Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **Product Management Dashboard** built with **React**, **React Query**, and **Axios**, including a full **Authentication System** (Login & Register).  
 
-Currently, two official plugins are available:
+The frontend supports **Protected Routes** and **JWT Token Authentication**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## :hammer_and_wrench: Technologies
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **React 18+**
+- **React Router DOM v6**
+- **React Query (TanStack Query)**
+- **Axios**
+- **React Hook Form + Yup** for forms and validation
+- **TailwindCSS** for styling
+- **react-hot-toast** for notifications
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## :file_folder: Project Structure
+```
+src/
+├─ api/
+│ ├─ auth.service.js # Login & Register requests
+│ ├─ products.service.js # CRUD requests for products
+│ └─ client.js # Axios instance with token interceptor
+├─ components/
+│ ├─ AuthCard.jsx # Login/Register form card
+│ ├─ AuthForm.jsx # Form using react-hook-form
+│ ├─ DashboardHeader.jsx # Dashboard header with search & logout
+│ ├─ DeleteProductModal.jsx # Delete product modal
+│ ├─ ProductFormModal.jsx # Create/Edit product modal
+│ ├─ FormInput.jsx # Form input with validation
+│ └─ Modal.jsx # Generic modal component
+├─ context/
+│ ├─ AuthContext.js
+│ ├─ AuthProvider.jsx
+│ └─ useAuth.js
+├─ pages/
+│ ├─ Login.jsx
+│ ├─ Register.jsx
+│ └─ Products.jsx
+├─ routes/
+│ └─ ProtectedRoute.jsx # Route protection based on login/role
+├─ validation/
+│ └─ authSchemas.js # Yup schemas for forms
+├─ App.jsx
+├─ main.jsx
+└─ global.css
+```
+## :rocket: Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+```bash
+# Clone the repository
+git clone https://github.com/atena-navidi/atena-navidi-week19.git
+
+# Install dependencies
+npm install
+# or
+yarn install
+```
+
+## :jigsaw: How to use
+
+1. Edit a product using the Edit button :pencil2:.
+
+2. Delete a product with Delete :wastebasket: .
+
+3. Use the search bar :mag: to quickly find a product.
+
+
+
+
