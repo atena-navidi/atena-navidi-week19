@@ -4,14 +4,14 @@ import Modal from "./Modal";
 const ProductFormModal = ({ isOpen, onClose, onSubmit, initialData }) => {
   const [form, setForm] = useState({
     name: "",
-    stock: "",
+    quantity: "",
     price: "",
   });
 
   useEffect(() => {
     setForm({
       name: initialData?.name || "",
-      stock: initialData?.stock ?? "",
+      quantity: initialData?.quantity ?? "",
       price: initialData?.price ?? "",
     });
   }, [initialData]);
@@ -27,7 +27,7 @@ const ProductFormModal = ({ isOpen, onClose, onSubmit, initialData }) => {
     onSubmit({
       ...form,
       id: initialData?.id,
-      stock: form.stock !== "" ? Number(form.stock) : 0,
+      quantity: form.quantity !== "" ? Number(form.quantity) : 0,
       price: form.price !== "" ? Number(form.price) : 0,
     });
 
@@ -55,9 +55,9 @@ const ProductFormModal = ({ isOpen, onClose, onSubmit, initialData }) => {
         <label>
           تعداد موجودی
           <input
-            name="stock"
+            name="quantity"
             type="number"
-            value={form.stock}
+            value={form.quantity}
             onChange={handleChange}
             placeholder="تعداد موجودی"
             className="w-full p-3 bg-gray-100 rounded-xl text-right"

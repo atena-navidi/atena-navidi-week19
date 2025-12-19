@@ -113,7 +113,7 @@ const Products = () => {
               {filteredProducts.map((p) => (
                 <tr key={p.id} className="bg-gray-50">
                   <td className="py-4 px-3 font-medium">{p.name}</td>
-                  <td className="pl-10">{p.stock}</td>
+                  <td className="pl-10">{p.quantity}</td>
                   <td className="pr-10">{p.price.toLocaleString()} تومان</td>
                   <td className="px-3 text-gray-400 text-sm">{p.id}</td>
                   <td className="px-3">
