@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import DashboardHeader from "../components/DashboardHeader";
 import DeleteProductModal from "../components/DeleteProductModal";
 import ProductFormModal from "../components/ProductFormModal";
+import settingIcon from "../asset/setting.svg";
 
 import {
   getProducts,
@@ -21,24 +22,26 @@ const Products = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [search, setSearch] = useState("");
 
-  
-  const { data: productsData, isLoading, isError } = useQuery({
+  const {
+    data: productsData,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: () => getProducts(),
   });
 
-   
   const products = Array.isArray(productsData) ? productsData : [];
 
-  
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase())
   );
 
-
   const saveProductMutation = useMutation({
     mutationFn: (product) =>
-      selectedProduct ? updateProduct(product.id, product) : createProduct(product),
+      selectedProduct
+        ? updateProduct(product.id, product)
+        : createProduct(product),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success("عملیات موفق بود");
@@ -49,7 +52,6 @@ const Products = () => {
   const addOrUpdateProduct = (product) => {
     saveProductMutation.mutate(product);
   };
-
 
   const deleteProductMutation = useMutation({
     mutationFn: (id) => deleteProduct(id),
@@ -69,11 +71,13 @@ const Products = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen p-6">
-      
       <DashboardHeader search={search} setSearch={setSearch} />
 
       <div className="flex justify-between mb-4">
-        <h1 className="text-lg font-semibold">مدیریت کالا</h1>
+        <div className="flex gap-2">
+          <img src={settingIcon} alt="setting icon" className="size-7" />
+          <h1 className="text-lg font-semibold">مدیریت کالا</h1>
+        </div>
         <button
           onClick={() => {
             setSelectedProduct(undefined);
@@ -85,7 +89,6 @@ const Products = () => {
         </button>
       </div>
 
-   
       <div className="bg-white rounded-3xl p-6">
         {isLoading && <p className="text-center py-10">در حال بارگذاری...</p>}
         {isError && (
@@ -111,14 +114,18 @@ const Products = () => {
             </thead>
             <tbody>
               {filteredProducts.map((p) => (
-                <tr key={p.id} className="bg-gray-50 hover:bg-gray-100 transition">
+                <tr
+                  key={p.id}
+                  className="bg-gray-50 hover:bg-gray-100 transition"
+                >
                   <td className="py-4 px-4 font-medium">{p.name}</td>
                   <td className="px-4 py-4">{p.quantity}</td>
-                  <td className="px-4 py-4">{p.price.toLocaleString()} تومان</td>
+                  <td className="px-4 py-4">
+                    {p.price.toLocaleString()} تومان
+                  </td>
                   <td className="px-4 py-4 text-gray-400 text-sm">{p.id}</td>
                   <td className="px-4 py-4">
                     <div className="flex gap-2 justify-end">
-                     
                       <button
                         onClick={() => {
                           setSelectedProduct(p);
@@ -129,7 +136,6 @@ const Products = () => {
                         ✏️
                       </button>
 
-                     
                       <button
                         onClick={() => {
                           setSelectedProduct(p);
@@ -148,7 +154,6 @@ const Products = () => {
         )}
       </div>
 
-      
       <DeleteProductModal
         isOpen={showDelete}
         onClose={() => setShowDelete(false)}
